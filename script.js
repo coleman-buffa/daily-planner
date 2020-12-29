@@ -1,3 +1,21 @@
+//Wait for the page to load before doing anything
+$(document).ready(function() {
+
+        //Store time slot and task as associated pair
+        var taskList = {
+                9: "",
+                10: "",
+                11: "",
+                12: "",
+                1: "",
+                2: "",
+                3: "",
+                4: "",
+                5: "",
+        }
+
+        
+}
 // Important tools to get this done:
 //     Local Storage
 //     Dynamic assigning of classes depending on some conditions (text contents, time value, etc)
@@ -65,6 +83,3 @@
         //     "a third string",
         //     "last one for example"
         // ]
-
-
-
