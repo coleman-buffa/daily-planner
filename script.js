@@ -1,7 +1,9 @@
 //Wait for the page to load before doing anything
 $(document).ready(function() {
 
-    //Save task from a text box to local storage
+    writeSchedule();
+
+    //Save task from all text boxes to local storage
     function saveSchedule () {
 
         var tempScheduleArr = [];
@@ -11,17 +13,31 @@ $(document).ready(function() {
             var rowTime = thisRow.data("time");
             var rowTaskEl = thisRow.find("textarea:nth-child(2)");
             var rowTaskText = rowTaskEl.val();
-            tempScheduleArr.push({[rowTime]: rowTaskText});
+            tempScheduleArr.push(rowTaskText);
         });
+
         localStorage.setItem("schedule", JSON.stringify(tempScheduleArr));   
     };
 
     function writeSchedule () {
-        //Load schedule from local storage and populate each time block
+        
+        //Check local storage to see if it is empty and assign accordingly
+        var tempScheduleArr = localStorage.getItem("schedule") === null ? [] : JSON.parse(localStorage.getItem("schedule"));
+        var i = 0;
+        $(".container .row").each(function () {
+            var thisRow = $(this);
+            var rowTaskEl = thisRow.find("textarea:nth-child(2)");
+            rowTaskEl.text(tempScheduleArr[i]);
+            i++;
+        });
     }
 
     function timeAudit () {
         //Compares the current time against the time blocks and applies relavent styling class
+    }
+
+    function clearSchedule () {
+        //Clears text from all boxes and local storage
     }
 
     //Event listener for the save buttons
