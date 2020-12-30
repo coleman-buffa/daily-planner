@@ -10,7 +10,6 @@ $(document).ready(function() {
 
         $(".container .row").each(function () {			
             var thisRow = $(this);
-            var rowTime = thisRow.data("time");
             var rowTaskEl = thisRow.find("textarea:nth-child(2)");
             var rowTaskText = rowTaskEl.val();
             tempScheduleArr.push(rowTaskText);
@@ -21,7 +20,7 @@ $(document).ready(function() {
 
     function writeSchedule () {
         
-        //Check local storage to see if it is empty and assign accordingly
+        //Check local storage to see if it is empty and assign contents of tempScheduleArr accordingly
         var tempScheduleArr = localStorage.getItem("schedule") === null ? [] : JSON.parse(localStorage.getItem("schedule"));
         var i = 0;
         $(".container .row").each(function () {
