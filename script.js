@@ -1,21 +1,34 @@
 //Wait for the page to load before doing anything
 $(document).ready(function() {
 
-        //Store time slot and task as associated pair
-        var taskList = {
-                9: "",
-                10: "",
-                11: "",
-                12: "",
-                1: "",
-                2: "",
-                3: "",
-                4: "",
-                5: "",
-        }
+    //Save task from a text box to local storage
+    function saveSchedule () {
 
-        
-}
+        var tempScheduleArr = [];
+
+        $(".container .row").each(function () {			
+            var thisRow = $(this);
+            var rowTime = thisRow.data("time");
+            var rowTaskEl = thisRow.find("textarea:nth-child(2)");
+            var rowTaskText = rowTaskEl.val();
+            tempScheduleArr.push({[rowTime]: rowTaskText});
+        });
+        localStorage.setItem("schedule", JSON.stringify(tempScheduleArr));   
+    };
+
+    function writeSchedule () {
+        //Load schedule from local storage and populate each time block
+    }
+
+    function timeAudit () {
+        //Compares the current time against the time blocks and applies relavent styling class
+    }
+
+    //Event listener for the save buttons
+    $(".saveBtn").on("click", saveSchedule);
+
+});
+
 // Important tools to get this done:
 //     Local Storage
 //     Dynamic assigning of classes depending on some conditions (text contents, time value, etc)
@@ -25,10 +38,9 @@ $(document).ready(function() {
 //          Do practice runs 04/00/20+21 drills
 
 // Potential challenges and general observations:
-//      I have no idea which time-text will be interacted with at a given time
+//      Input order is not predicatable
 //      An array will make setting up the time blocks easy (iterate and assign)
 //      We know the time range will always be 9am-5pm
-
 
 // Pseudocode and Planning:
 //     Step 1 Setup data storage from local storage
@@ -67,7 +79,7 @@ $(document).ready(function() {
         //     } etc
         // ]
 
-        // // Can iterate through the array to setup initial time-text values
+        // Can iterate through the array to setup initial time-text values
         // var thing2 = {
         //     09: "Some string",
         //     10: "Another String",
@@ -79,7 +91,11 @@ $(document).ready(function() {
         // An array where index + 9 gives the correct hour, or time - 9 gives index
         // var array = [
         //     "some string",
-        //     "another string",
+        //     "",
         //     "a third string",
-        //     "last one for example"
+        //     ""
         // ]
+
+        // Ternary operator - logical test ? execute 1 if true: execute 2 if false;
+
+        // Jquery has a .each method that allows a function to be done to a collection of stuff
