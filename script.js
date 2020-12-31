@@ -1,7 +1,7 @@
 // Wait for the page to load before doing anything
 $(document).ready(function() {
 
-    // Initializing the page by loadgin local storage (if applicable) , set the date, and 
+    // Initializing the page by loading local storage (if applicable) , set the date, and 
     // apply color coding
     writeSchedule();
     setDate();
@@ -20,8 +20,9 @@ $(document).ready(function() {
         timeAudit();   
     };
 
+    // Load task items from local storage (if it exists)
     function writeSchedule () {        
-        // Check local storage to see if it is empty and assign contents of tempScheduleArr accordingly
+        // Check local storage to see if it is empty and assign contents to tempScheduleArr accordingly
         var tempScheduleArr = localStorage.getItem("schedule") === null ? [] : JSON.parse(localStorage.getItem("schedule"));
         var i = 0;
         $(".container .row").each(function () {
