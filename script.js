@@ -18,8 +18,7 @@ $(document).ready(function() {
         localStorage.setItem("schedule", JSON.stringify(tempScheduleArr));   
     };
 
-    function writeSchedule () {
-        
+    function writeSchedule () {        
         //Check local storage to see if it is empty and assign contents of tempScheduleArr accordingly
         var tempScheduleArr = localStorage.getItem("schedule") === null ? [] : JSON.parse(localStorage.getItem("schedule"));
         var i = 0;
@@ -35,12 +34,18 @@ $(document).ready(function() {
         //Compares the current time against the time blocks and applies relavent styling class
     }
 
+    // Deletes all entries in local storage and refreshes the page
     function clearSchedule () {
-        //Clears text from all boxes and local storage
+        var tempScheduleArr = [];
+        localStorage.setItem("schedule", JSON.stringify(tempScheduleArr));   
+        window.location.reload();
     }
 
     //Event listener for the save buttons
     $(".saveBtn").on("click", saveSchedule);
+    
+    //Event listener for clear schedule button
+    $(".clearSchedule").on("click", clearSchedule);
 
 });
 
