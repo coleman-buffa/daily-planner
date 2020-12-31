@@ -1,12 +1,13 @@
-//Wait for the page to load before doing anything
+// Wait for the page to load before doing anything
 $(document).ready(function() {
 
-    //Initializing the page with color coding, local storage check, and current date
+    // Initializing the page by loadgin local storage (if applicable) , set the date, and 
+    // apply color coding
     writeSchedule();
     setDate();
     timeAudit();
 
-    //Save task from all text boxes to local storage
+    // Save task from all text boxes to local storage
     function saveSchedule () {
         var tempScheduleArr = [];
         $(".container .row").each(function () {			
@@ -20,7 +21,7 @@ $(document).ready(function() {
     };
 
     function writeSchedule () {        
-        //Check local storage to see if it is empty and assign contents of tempScheduleArr accordingly
+        // Check local storage to see if it is empty and assign contents of tempScheduleArr accordingly
         var tempScheduleArr = localStorage.getItem("schedule") === null ? [] : JSON.parse(localStorage.getItem("schedule"));
         var i = 0;
         $(".container .row").each(function () {
@@ -31,9 +32,9 @@ $(document).ready(function() {
         });
         timeAudit();
     }
-    //Sets color coding of time blocks
-    function timeAudit () {
 
+    // Sets color coding of time blocks
+    function timeAudit () {
         // Capture current hour in a comparable format used below
         var currentHour = parseInt(moment().format("HH"));
 
@@ -59,14 +60,14 @@ $(document).ready(function() {
 
     // Set date text located in page header
     function setDate () {
-       var currentDate = moment().format("dddd MMMM Do");
+       var currentDate = moment().format("dddd, MMMM Do");
        $("#currentDay").text(currentDate);
     }
 
-    //Event listener for the save buttons
+    // Event listener for the save buttons
     $(".saveBtn").on("click", saveSchedule);
     
-    //Event listener for clear schedule button
+    // Event listener for clear schedule button
     $(".clearSchedule").on("click", clearSchedule);
 
 });

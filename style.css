@@ -24,6 +24,7 @@ textarea{
 .description{
   white-space: pre-wrap;
   align-content: center;
+  flex: auto;
 
 }
 
@@ -38,14 +39,13 @@ textarea{
   border-top: 1px solid white;
   display: flex;
   align-items: stretch;
-  
+  justify-content: center;  
 }
 
 .hour {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
-
 }
 
 .past {
@@ -58,14 +58,12 @@ textarea{
   background-color: #ff6961;
   color: #000000;
   align-content: center;
-
 }
 
 .future {
   background-color: #77dd77;
   color: #000000;
   align-content: center;
-
 }
 
 .saveBtn {
