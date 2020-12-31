@@ -1,21 +1,23 @@
 //Wait for the page to load before doing anything
 $(document).ready(function() {
 
+    //Write the schedule to the page if local storage has contents
     writeSchedule();
+
+    //
+    timeAudit();
 
     //Save task from all text boxes to local storage
     function saveSchedule () {
-
         var tempScheduleArr = [];
-
         $(".container .row").each(function () {			
             var thisRow = $(this);
             var rowTaskEl = thisRow.find("textarea:nth-child(2)");
             var rowTaskText = rowTaskEl.val();
             tempScheduleArr.push(rowTaskText);
         });
-
-        localStorage.setItem("schedule", JSON.stringify(tempScheduleArr));   
+        localStorage.setItem("schedule", JSON.stringify(tempScheduleArr));
+        timeAudit();   
     };
 
     function writeSchedule () {        
@@ -28,10 +30,21 @@ $(document).ready(function() {
             rowTaskEl.text(tempScheduleArr[i]);
             i++;
         });
+        timeAudit();
     }
-
+    //Sets color coding of time blocks
     function timeAudit () {
-        //Compares the current time against the time blocks and applies relavent styling class
+        var currentHour = parseInt(moment().format("HH"));
+        $(".container .row").each(function () {
+            var rowTime = $(this).data("time");
+            var rowTaskEl = $(this).find("textarea:nth-child(2)");
+            if (rowTime < currentHour) {
+                rowTaskEl.addClass("past");
+            } else if (rowTime == currentHour) {
+                rowTaskEl.addClass("present");                
+            } else
+                rowTaskEl.addClass("future");
+        });
     }
 
     // Deletes all entries in local storage and refreshes the page
@@ -39,6 +52,7 @@ $(document).ready(function() {
         var tempScheduleArr = [];
         localStorage.setItem("schedule", JSON.stringify(tempScheduleArr));   
         window.location.reload();
+        timeAudit();
     }
 
     //Event listener for the save buttons
