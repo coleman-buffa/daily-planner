@@ -8,7 +8,7 @@ This daily planner project was an exercise in using learning to use JQuery. The 
 
 | |||
 | :------------------------------ | :-------------------------| :-----------------------------------|
-| [Project Introduction](#quiz-game) | [Table of Contents](#table-of-contents) | [Goals and Methods](#goals-and-methods) | 
+| [Project Introduction](#daily-planner) | [Table of Contents](#table-of-contents) | [Goals and Methods](#goals-and-methods) | 
 | [Technologies](#technologies)   | [Deployed Link](#deployed-link) | [Authors](#authors) |
 | [Acknowledgments](#acknowledgments) | [License](#license) |
 ---
